@@ -1,3 +1,5 @@
+[![Build Status](https://api.travis-ci.org/jakobloekke/grunt-sharepoint-editor-styles.png?branch=master)](https://travis-ci.org/jakobloekke/tdcss.js)
+
 # grunt-sharepoint-editor-styles
 
 > Extract sharepoint editor styles into separate stylesheet.
