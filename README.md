@@ -1,4 +1,4 @@
-[![Build Status](https://api.travis-ci.org/jakobloekke/grunt-sharepoint-editor-styles.png?branch=master)](https://travis-ci.org/jakobloekke/tdcss.js)
+[![Build Status](https://api.travis-ci.org/jakobloekke/grunt-sharepoint-editor-styles.png?branch=master)](https://travis-ci.org/jakobloekke/grunt-sharepoint-editor-styles)
 
 # grunt-sharepoint-editor-styles
 
@@ -29,6 +29,9 @@ In your project's Gruntfile, add a section named `sharepoint_editor_styles` to t
 ```js
 grunt.initConfig({
   sharepoint_editor_styles: {
+    options: {
+      // Options
+    },
     your_target: {
       // Target-specific file lists and/or options go here.
     },
@@ -42,15 +45,15 @@ There are no options.
 
 ### Usage Examples
 
-In this example, we input a file that looks like this:
+In this example, we input a file that contains this:
 
 ```css
 .not-an-editor-style {
     color: red;
 }
 
-p.nc-article-Element-test {
-    -ms-name: test;
+p.nc-article-Element-an-editor-style {
+    -ms-name: "test";
     color: blue;
 }
 
@@ -59,8 +62,8 @@ p.nc-article-Element-test {
 The generated EditorStyles.css will look like this:
 
 ```css
-p.nc-article-Element-test {
-    -ms-name: test;
+p.nc-article-Element-an-editor-style {
+    -ms-name: "test";
     color: blue;
 }
 ```
@@ -70,6 +73,9 @@ Only CSS rules with the -ms-name property are copied over.
 ```js
 grunt.initConfig({
   sharepoint_editor_styles: {
+    options: {
+      CssFileToPrepend: 'path/to/css/file/to/prepend'
+    },
     files: {
       'path/to/where/sharepoint/stores/editorstyles/EditorStyles.css': ['src/app.css'],
     },
@@ -77,12 +83,8 @@ grunt.initConfig({
 })
 ```
 
-
 ## Contributing
 In lieu of a formal styleguide, take care to maintain the existing coding style. Add unit tests for any new or changed functionality. Lint and test your code using [Grunt](http://gruntjs.com/).
-
-## Release History
-0.0.1 - First version
 
 ## License
 Copyright (c) 2014 Jakob Løkke Madsen. Licensed under the MIT license.
