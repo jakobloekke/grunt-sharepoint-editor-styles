@@ -2,6 +2,8 @@
 
 > Extract sharepoint editor styles into separate stylesheet.
 
+The point of this plugin is to allow you to manage your styles the way you're used to – then generate the separate EditorStyles.css that Sharepoint uses for the ribbon controls.
+
 ## Getting Started
 This plugin requires Grunt.
 
@@ -41,8 +43,30 @@ There are no options.
 
 ### Usage Examples
 
-#### Default Options
-In this example, the default options are used to do something with whatever. So if the `testing` file has the content `Testing` and the `123` file had the content `1 2 3`, the generated result would be `Testing, 1 2 3.`
+In this example, we input a file that looks like this:
+
+```css
+.not-an-editor-style {
+    color: red;
+}
+
+p.nc-article-Element-test {
+    -ms-name: test;
+    color: blue;
+}
+
+```
+
+The generated EditorStyles.css will look like this:
+
+```css
+p.nc-article-Element-test {
+    -ms-name: test;
+    color: blue;
+}
+```
+
+Only CSS rules with the -ms-name property are copied over.
 
 ```js
 grunt.initConfig({
