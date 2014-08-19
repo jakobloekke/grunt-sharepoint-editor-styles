@@ -27,9 +27,6 @@ In your project's Gruntfile, add a section named `sharepoint_editor_styles` to t
 ```js
 grunt.initConfig({
   sharepoint_editor_styles: {
-    options: {
-      // Task-specific options go here.
-    },
     your_target: {
       // Target-specific file lists and/or options go here.
     },
