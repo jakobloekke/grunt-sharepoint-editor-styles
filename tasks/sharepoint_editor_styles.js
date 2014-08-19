@@ -40,26 +40,24 @@ module.exports = function (grunt) {
                 return grunt.file.read(filepath);
             });
 
-            // Write the destination file.
-            grunt.file.write(input_file.dest, src);
+            var generated_editor_stylesheet_content = '';
+            _.each(src, function (css_file_content) {
+                var parsed_css = css.parse(css_file_content);
+                var rules_with_ms_name = [];
 
-            // Write the generated file
-            var parsed_css = css.parse(src.toString());
-            var rules_with_ms_name = [];
-
-            _.each(parsed_css.stylesheet.rules, function (rule) {
-                _.each(rule.declarations, function (declaration) {
-                    if (declaration.property === '-ms-name') {
-                        rules_with_ms_name.push(rule);
-                    }
+                _.each(parsed_css.stylesheet.rules, function (rule) {
+                    _.each(rule.declarations, function (declaration) {
+                        if (declaration.property === '-ms-name') {
+                            rules_with_ms_name.push(rule);
+                        }
+                    });
                 });
+
+                parsed_css.stylesheet.rules = rules_with_ms_name;
+                generated_editor_stylesheet_content += css.stringify(parsed_css) + '\n';
             });
 
-            parsed_css.stylesheet.rules = rules_with_ms_name;
-
-            var generated_editor_stylesheet = css.stringify(parsed_css);
-
-            grunt.file.write(input_file.dest, generated_editor_stylesheet + '\n');
+            grunt.file.write(input_file.dest, generated_editor_stylesheet_content);
         });
     });
 };

@@ -1,4 +1,8 @@
 p.nc-article-Element-test {
-  -ms-name: test;
+  -ms-name: 'test';
   color: blue;
+}
+.test2 {
+  -ms-name: 'test2';
+  font-size: 12px;
 }
