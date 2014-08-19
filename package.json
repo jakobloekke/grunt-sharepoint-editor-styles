@@ -1,6 +1,6 @@
 {
   "name": "grunt-sharepoint-editor-styles",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Extract sharepoint editor styles into separate stylesheet.",
   "repository": "https://github.com/jakobloekke/grunt-sharepoint-editor-styles",
   "author": {

@@ -20,12 +20,20 @@ module.exports = function (grunt) {
 
         // Merge task-specific and/or target-specific options with these defaults.
         var options = this.options({
-            generated_file_destination: 'tmp',
-            generated_file_name: 'EditorStyles.css'
+            CssFileToPrepend: ''
         });
 
         // Iterate over all specified file groups.
         this.files.forEach(function (input_file) {
+            var generated_editor_stylesheet_content = '';
+
+            // Get file to prepend
+            if (grunt.file.exists(options.CssFileToPrepend)) {
+                generated_editor_stylesheet_content = grunt.file.read(options.CssFileToPrepend);
+            } else {
+                generated_editor_stylesheet_content = '';
+            }
+
 
             var src = input_file.src.filter(function (filepath) {
                 // Warn on and remove invalid source files (if nonull was set).
@@ -40,7 +48,7 @@ module.exports = function (grunt) {
                 return grunt.file.read(filepath);
             });
 
-            var generated_editor_stylesheet_content = '';
+
             _.each(src, function (css_file_content) {
                 var parsed_css = css.parse(css_file_content);
                 var rules_with_ms_name = [];

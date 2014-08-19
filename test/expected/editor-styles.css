@@ -1,3 +1,6 @@
+.prepend {
+  color: orange;
+}
 p.nc-article-Element-test {
   -ms-name: 'test';
   color: blue;
