@@ -34,11 +34,8 @@ module.exports = function (grunt) {
         // Configuration to be run (and then tested).
         sharepoint_editor_styles: {
             styles: {
-                options: {
-                    generated_file_name: 'EditorStyles.css'
-                },
                 files: {
-                    'tmp/test.css': ['test/fixtures/test.css']
+                    'tmp/EditorStyles.css': ['test/fixtures/test.css']
                 }
             }
         },

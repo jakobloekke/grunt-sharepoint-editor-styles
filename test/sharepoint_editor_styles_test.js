@@ -27,19 +27,10 @@ exports.sharepoint_editor_styles = {
         // setup here if necessary
         done();
     },
-    normal_styles: function (test) {
-        test.expect(1);
-
-        var actual = grunt.file.read('tmp/test.css');
-        var expected = grunt.file.read('test/fixtures/test.css');
-        test.equal(actual, expected, 'should be an exact copy of the original stylesheet.');
-
-        test.done();
-    },
     editor_styles: function (test) {
         test.expect(1);
 
-        var actual = grunt.file.read('test/fixtures/test.css');
+        var actual = grunt.file.read('tmp/EditorStyles.css');
         var expected = grunt.file.read('test/expected/editor-styles.css');
         test.equal(actual, expected, 'should only contain rules for the SP editor.');
 

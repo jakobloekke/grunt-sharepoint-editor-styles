@@ -26,5 +26,10 @@
   },
   "scripts": {
     "test": "grunt test"
+  },
+  "dependencies": {
+    "css": "^2.1.0",
+    "css-parse": "^2.0.0",
+    "underscore": "^1.6.0"
   }
 }
