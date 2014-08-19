@@ -1,0 +1,9 @@
+.not-an-editor-style {
+    color: red;
+}
+
+p.nc-article-Element-test {
+    -ms-name: test;
+
+    color: blue;
+}
