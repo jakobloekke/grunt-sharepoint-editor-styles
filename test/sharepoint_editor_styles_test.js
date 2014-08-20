@@ -23,17 +23,44 @@ var grunt = require('grunt');
  */
 
 exports.sharepoint_editor_styles = {
-    setUp: function (done) {
-        // setup here if necessary
-        done();
-    },
-    editor_styles: function (test) {
-        test.expect(1);
+  setUp: function (done) {
+    // setup here if necessary
+    done();
+  },
+  one_file: function (test) {
+    test.expect(1);
 
-        var actual = grunt.file.read('tmp/EditorStyles.css');
-        var expected = grunt.file.read('test/expected/editor-styles.css');
-        test.equal(actual, expected, 'should only contain rules for the SP editor.');
+    var actual = grunt.file.read('tmp/one_file.css');
+    var expected = grunt.file.read('test/expected/one_file.css');
+    test.equal(actual, expected, 'should only contain rules for the SP editor.');
 
-        test.done();
-    }
+    test.done();
+  },
+  multiple_files: function (test) {
+    test.expect(1);
+
+    var actual = grunt.file.read('tmp/multiple_files.css');
+    var expected = grunt.file.read('test/expected/multiple_files.css');
+    test.equal(actual, expected, 'should work with multiple files.');
+
+    test.done();
+  },
+  prependCss: function (test) {
+    test.expect(1);
+
+    var actual = grunt.file.read('tmp/prependCss.css');
+    var expected = grunt.file.read('test/expected/prependCss.css');
+    test.equal(actual, expected, 'should have an option to prepend a pure CSS file.');
+
+    test.done();
+  },
+  pseudoSelectors: function (test) {
+    test.expect(1);
+
+    var actual = grunt.file.read('tmp/pseudoSelectors.css');
+    var expected = grunt.file.read('test/expected/pseudoSelectors.css');
+    test.equal(actual, expected, 'should find all pseudoselectors for editor styles and include those too.');
+
+    test.done();
+  }
 };

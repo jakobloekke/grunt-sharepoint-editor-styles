@@ -1,0 +1,18 @@
+.prepend {
+  color: orange;
+}
+p.nc-article-Element-test {
+  -ms-name: 'test';
+  color: blue;
+}
+.test2 {
+  -ms-name: 'test2';
+  font-size: 12px;
+}
+.has-pseudo-selector {
+  -ms-name: 'pseudo';
+  color: red;
+}
+.has-pseudo-selector:after {
+  position: absolute;
+}

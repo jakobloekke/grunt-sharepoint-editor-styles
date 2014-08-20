@@ -1,0 +1,8 @@
+.has-pseudo-selector {
+  -ms-name: 'pseudo';
+  color: red;
+}
+
+.has-pseudo-selector:after {
+  position: absolute;
+}
