@@ -13,8 +13,30 @@ var css = require('css'),
 
 module.exports = function (grunt) {
 
-  // Please see the Grunt documentation for more information regarding task
-  // creation: http://gruntjs.com/creating-tasks
+  function findRelevantPseudoSelectorRules(rules_with_ms_name, parsed_css) {
+    var relevant_rules = [];
+
+    // For each ms_rule
+    _.each(rules_with_ms_name, function (ms_rule) {
+
+      // Find the ms_rule.selector (always the first selector)
+      var ms_rule_selector = ms_rule.selectors[0] + ':';
+
+      // Locate the ms_rule_selector in the general rules
+      _.each(parsed_css.stylesheet.rules, function (rule) {
+        var matching_selector = _.find(rule.selectors, function (selector) {
+          return selector.indexOf(ms_rule_selector) !== -1;
+        });
+
+        // when found, append the corresponding general rule to relevant rules
+        if (matching_selector) {
+          relevant_rules.push(rule);
+        }
+      });
+    });
+
+    return relevant_rules;
+  }
 
   grunt.registerMultiTask('sharepoint_editor_styles', 'Extract sharepoint editor styles into separate stylesheet.', function () {
 
@@ -34,7 +56,6 @@ module.exports = function (grunt) {
         generated_editor_stylesheet_content = '';
       }
 
-
       var src = input_file.src.filter(function (filepath) {
         // Warn on and remove invalid source files (if nonull was set).
         if (!grunt.file.exists(filepath)) {
@@ -52,8 +73,6 @@ module.exports = function (grunt) {
         var parsed_css = css.parse(css_file_content);
         var rules_with_ms_name = [];
 
-        grunt.file.write('tmp/test' + i + '.js', JSON.stringify(parsed_css));
-
         _.each(parsed_css.stylesheet.rules, function (rule) {
           _.each(rule.declarations, function (declaration) {
             if (declaration.property === '-ms-name') {
@@ -62,8 +81,10 @@ module.exports = function (grunt) {
           });
         });
 
-        parsed_css.stylesheet.rules = rules_with_ms_name;
+        var relevant_pseudo_selector_rules = findRelevantPseudoSelectorRules(rules_with_ms_name, parsed_css);
+        parsed_css.stylesheet.rules = rules_with_ms_name.concat(relevant_pseudo_selector_rules);
         generated_editor_stylesheet_content += css.stringify(parsed_css) + '\n';
+
       });
 
       grunt.file.write(input_file.dest, generated_editor_stylesheet_content);

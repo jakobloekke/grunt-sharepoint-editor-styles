@@ -13,6 +13,7 @@ p.nc-article-Element-test {
   -ms-name: 'pseudo';
   color: red;
 }
+
 .has-pseudo-selector:after {
   position: absolute;
 }
