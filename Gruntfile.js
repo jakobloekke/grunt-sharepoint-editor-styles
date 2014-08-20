@@ -35,7 +35,7 @@ module.exports = function (grunt) {
         sharepoint_editor_styles: {
             styles: {
                 options: {
-                    CssFileToPrepend: 'test/fixtures/prepend  .css'
+                    CssFileToPrepend: 'test/fixtures/prepend.css'
                 },
                 files: {
                     'tmp/EditorStyles.css': ['test/fixtures/test.css', 'test/fixtures/test2.css']
